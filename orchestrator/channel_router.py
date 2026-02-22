@@ -142,8 +142,18 @@ def build_task_packet(
 
     # Keep template's default placeholders where not explicitly supplied
     t.setdefault("inputs", [])
-    t.setdefault("outputs_expected", [])
     t.setdefault("artifacts_paths", [])
+
+    # Output expectations + estimates for simple echo checks
+    is_single_echo = len(allowed_commands) == 1 and "echo" in allowed_commands[0].lower()
+    if any("echo" in cmd.lower() for cmd in allowed_commands):
+        t["outputs_expected"] = ["Echo output in run log"]
+    else:
+        t["outputs_expected"] = ["See run log at execution_log_path"]
+
+    if is_single_echo:
+        t["estimate_low_sec"] = 5
+        t["estimate_high_sec"] = 30
 
     return t
 
@@ -178,6 +188,8 @@ def main() -> int:
 
     if args.dry_run:
         print(json.dumps(packet, indent=2))
+        print(f"Approve task {task_id}")
+        print(f"Run task {task_id}")
         log(f"dry-run task_id={task_id} business={business} agent={agent_name}")
         return 0
 
@@ -186,6 +198,8 @@ def main() -> int:
     out.write_text(json.dumps(packet, indent=2) + "\n", encoding="utf-8")
 
     print(f"WROTE {out}")
+    print(f"Approve task {task_id}")
+    print(f"Run task {task_id}")
     log(f"wrote task_id={task_id} path={out} business={business} agent={agent_name}")
     return 0
 
