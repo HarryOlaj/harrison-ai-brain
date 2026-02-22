@@ -1,0 +1,20 @@
+{
+  "task_id": "TEMPLATE_replace_me",
+  "title": "TEMPLATE_replace_me",
+  "business": "UP360|EarthIsland|RealEstate",
+  "agent_name": "AI Harry|VR Harry|Earth Harry|House Harry",
+  "risk_level": "LOW|MEDIUM|HIGH",
+  "created_at": "TEMPLATE_iso_datetime",
+  "requested_by": "Harrison",
+  "state": "DRAFT",
+  "allowed_hosts": ["harry_mac"],
+  "allowed_commands": ["TEMPLATE_command_1"],
+  "inputs": [],
+  "outputs_expected": ["TEMPLATE_expected_output"],
+  "estimate_low_sec": 60,
+  "estimate_high_sec": 300,
+  "approval_required": true,
+  "approval": null,
+  "execution_log_path": "runs/TEMPLATE_replace_me/log.txt",
+  "artifacts_paths": []
+}
