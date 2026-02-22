@@ -25,23 +25,34 @@ PAM v1 does **not** access:
 - `~/ai_ops/pam_runtime/`
 
 ### Services
-- `pam_api` (FastAPI webhook server)
+- `pam_api` (FastAPI service boundary)
 - `pam_worker` (optional background worker for long tasks)
+- `pam_discord_adapter` (Discord DM adapter, separate token)
+- `pam_twilio_adapter` (Twilio SMS/MMS webhook adapter)
+
+### Adapter Pattern (Dual Interface Model)
+PAM v1 supports two inbound adapters:
+1. Discord DM (primary interface now)
+2. Twilio SMS/MMS (secondary, next rollout)
+
+Both adapters must route into the **same shared intent layer**.
+No duplicate intent logic is allowed across adapters.
 
 ### Execution Model
-1. Webhook receives SMS/MMS payload.
-2. Request signature is validated.
-3. Event is appended to audit log.
-4. Intent router selects allowlisted handler.
+1. Adapter receives inbound event (Discord DM or Twilio webhook).
+2. Adapter validates source/auth requirements.
+3. Adapter writes normalized event to append-only audit log.
+4. Shared intent router selects allowlisted handler.
 5. Handler calls permitted tools (Google APIs, Drive).
 6. Response text is generated.
-7. Reply is sent via Twilio.
+7. Adapter sends channel-appropriate reply.
 
 ### Runtime Safety Baseline
 - No shell execution.
 - No git operations.
 - No imports from Harry runtime.
 - No business-repo reads/writes.
+- PAM runtime remains standalone and is not integrated into OpenClaw.
 
 ---
 
@@ -51,26 +62,49 @@ PAM v1 does **not** access:
 - PAM binds locally to loopback only (`127.0.0.1`).
 - Cloudflare Tunnel provides public ingress for Twilio webhook delivery.
 - Expose only webhook route required for Twilio.
+- Discord adapter uses outbound gateway connection and DM events only (no server-channel handling).
 
 ### Policy
 - No direct public bind on PAM process.
 - Tunnel ingress narrowed to minimal path.
+- Discord adapter must ignore all guild/server channels and respond in DMs only.
 
 ---
 
-## 3) Twilio SMS/MMS Flow
+## 3) Interface Adapters
 
-### Inbound Inputs
+### A) Discord DM Adapter (Primary for v1 rollout)
+#### Requirements
+- Uses a separate PAM Discord bot token.
+- Responds to DMs only.
+- Ignores all server/guild channels.
+- Logs events to the shared `events.jsonl` audit file.
+- Enforces kill switch behavior.
+- Enforces intent allowlist.
+- Enforces rate limits.
+
+#### Inbound Inputs
+- Sender user ID
+- DM text
+- Message ID
+- Attachments metadata (if present)
+
+#### Outbound Outputs
+- DM response
+- Optional summary + next-step format
+
+### B) Twilio SMS/MMS Adapter (Secondary, next rollout)
+#### Inbound Inputs
 - Sender phone number
 - SMS text body
 - Media URLs (MMS)
 - Twilio Message SID (`MessageSid`)
 
-### Outbound Outputs
+#### Outbound Outputs
 - SMS response
 - Optional summary + next-step format
 
-### MMS Handling
+#### MMS Handling
 - Download media URLs
 - Store in Drive `Pam Notes/Inbox/Media/`
 - Return link + short summary
@@ -99,6 +133,7 @@ PAM v1 does **not** access:
 - Never committed to git
 
 ### Expected Secret Keys
+- `DISCORD_BOT_TOKEN_PAM`
 - `TWILIO_ACCOUNT_SID`
 - `TWILIO_AUTH_TOKEN`
 - `TWILIO_NUMBER`
@@ -139,7 +174,8 @@ If present:
 
 ### Per-Event Required Fields
 - `timestamp`
-- `sender_phone`
+- `adapter` (`discord_dm` | `twilio_sms`)
+- `sender_id` (phone or Discord user ID)
 - `provider_message_id`
 - `inbound_text`
 - `body_hash`
@@ -177,10 +213,11 @@ If present:
 
 ### 1) Idempotency + Replay Protection (Critical)
 - Reject duplicate processing using tuple:
-  - `provider_message_id` (Twilio `MessageSid`)
-  - `sender_phone`
+  - `adapter`
+  - `provider_message_id` (Twilio `MessageSid` or Discord message ID)
+  - `sender_id`
   - `body_hash`
-- Enforce signature timestamp validity window.
+- Enforce timestamp validity window for signed/webhook sources.
 
 ### 2) Timeout Budget + Async Handling
 - Hard response budget: 4 seconds.
@@ -243,10 +280,11 @@ When enabled:
 
 ---
 
-## 11) iPhone UX Model (SMS-First)
+## 11) UX Model (Discord DM-First, SMS Secondary)
 
 ### Input Style
-- Natural-language SMS/MMS commands
+- Natural-language Discord DM commands (primary)
+- Natural-language SMS/MMS commands (secondary)
 
 ### Output Style
 - Short, action-oriented replies
