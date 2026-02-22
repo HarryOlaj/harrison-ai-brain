@@ -14,15 +14,18 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
 import re
 import sys
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
-BRAIN_ROOT = Path.home() / "ai_ops" / "harrison-ai-brain"
-ORCH_DIR = BRAIN_ROOT / "orchestrator"
+ORCH_DIR = Path(__file__).resolve().parent
+BRAIN_ROOT = ORCH_DIR.parent
+AI_OPS_ROOT = Path(__file__).resolve().parents[2] if len(Path(__file__).resolve().parents) >= 3 else BRAIN_ROOT.parent
+AI_OPS_ROOT = Path(os.environ.get("AI_OPS_ROOT", str(AI_OPS_ROOT))).expanduser()
 TEMPLATE_PATH = ORCH_DIR / "task_packet_template.json"
-WORKROOM_TASKS_DIR = Path.home() / "ai_ops" / "up360-ai-workroom" / "tasks"
+WORKROOM_TASKS_DIR = AI_OPS_ROOT / "up360-ai-workroom" / "tasks"
 LOG_DIR = ORCH_DIR / "logs"
 LOG_FILE = LOG_DIR / "channel_router.log"
 
