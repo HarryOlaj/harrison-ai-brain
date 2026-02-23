@@ -1,7 +1,7 @@
 # System Baseline Snapshot
 
 - Runtime repo commit hash (up360-ai-workroom): f2d7963
-- Brain repo commit hash (harrison-ai-brain): f0001f7
+- Brain repo commit hash (harrison-ai-brain): aadde6c
 - OpenClaw version: 2026.2.21-2
 - Current model: openai-codex/gpt-5.3-codex
 
@@ -66,6 +66,11 @@
     "id": "95008cef-59f0-4c98-ad68-034e2433fba1",
     "name": "reminder:tcc-permissions-checklist",
     "purpose": "Reminder: Run the macOS permissions checklist (Files & Folders + Full Disk Access) for OpenClaw/Terminal."
+  },
+  {
+    "id": "1192a293-979c-4fd7-919a-131671bccb94",
+    "name": "reminder:scan-revisit-0830",
+    "purpose": "Reminder: revisit setup scan items (security posture decision, session hygiene, repo hygiene, and daily alignment check)."
   }
 ]
 ```
