@@ -111,17 +111,20 @@ No duplicate intent logic is allowed across adapters.
 
 ---
 
-## 4) Google Integration Staging
+## 4) Google Integration Model (Policy-Layer Controlled)
 
-### Day 1 (Read + Create, no send)
-- Gmail: read-only (both accounts)
-- Calendar: read + create/update shared calendars
+PAM is not restricted by fragmented calendar/account write permissions.
+PAM has read/write access across relevant Google Calendars to operate as an executive/personal assistant.
+Safety is enforced via policy-layer action classes (not by narrow account capability limits alone).
+
+### Base Access
+- Gmail: read/write as configured for life-layer operations
+- Calendar: read/write across relevant calendars
 - Tasks: read/write
-- Drive: read/write within dedicated PAM folder
+- Drive: read/write within dedicated PAM folders
 
-### Week 1 (Controlled write escalation)
-- Harrison Gmail: draft + send (send requires explicit confirmation)
-- Wife Gmail: draft-only, no send
+### Hard Boundary
+- Business-system actions remain gated by policy and approval classes.
 
 ---
 
@@ -182,6 +185,7 @@ If present:
 - `media_count`
 - `media_urls`
 - `detected_intent`
+- `action_class` (`A` | `B` | `C`)
 - `tools_called`
 - `action_result`
 - `reply_text`
@@ -191,21 +195,35 @@ If present:
 
 ### Daily Digest
 - `~/ai_ops/pam_runtime/logs/daily_digest_YYYY-MM-DD.md`
+- High-signal only (not every action)
+- Always include Class B and Class C actions
+- Include significant Class A actions only (travel, medical, financial)
 
 ---
 
-## 8) Permission Guardrails
+## 8) Action Class Policy Layer (Guardrails)
 
-### Explicit Confirmation Required
-- Sending email
-- Deleting anything
-- Cancelling events
+Safety and autonomy are enforced by action class, independent of raw account permission breadth.
 
-### Allowed Without Confirmation
-- Creating draft email
-- Creating task
-- Suggesting time slots
-- Capturing notes
+### Class A — Auto-Execute
+- Create new event in an empty slot
+- Create tasks
+- Add notes/reminders
+
+### Class B — Confirm First
+- Create event that overlaps another
+- Modify event PAM created
+- Change event time/date
+
+### Class C — Explicit Approval Required
+- Delete event
+- Modify/cancel events created externally (e.g., business-origin meetings)
+- Send business emails
+- Cancel external meetings
+
+### Execution Rule
+- PAM must evaluate action class before execution.
+- If class is B or C, follow confirmation/approval requirement strictly.
 
 ---
 
