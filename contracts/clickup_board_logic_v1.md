@@ -64,10 +64,11 @@ Weekly archive:
 - If Harrison says “cancel”, “drop”, “no longer needed”, move to TRASHED and set execution Status to “trashed”.
 
 ## Origin field
-- There is an “Origin” column used to note where tasks came from (email/meeting/discord/etc).
-- For now, fill it when obvious, using short plain text.
-- Do not enforce a strict format.
-- Do not overwrite an existing Origin.
+- There is an “Origin” column used to note who logged the task and where it came from.
+- Origin is mandatory on every new task and should always be set.
+- Default format: `<actor>/<source>` (example: `Harry/Discord`, `Harrison/Email`, `Pam/Meeting`).
+- If source is uncertain, use `unknown` (example: `Harry/unknown`) rather than leaving blank.
+- Do not overwrite an existing Origin unless Harrison explicitly requests correction.
 
 ## Safety and approvals
 - Never delete tasks.
@@ -81,7 +82,7 @@ After any ClickUp action performed, output a compact confirmation including:
 - Lane (ICE BOX/BACKLOG/THIS WEEK/TODAY/DONE/ARCHIVED/TRASHED)
 - Execution Status (if set)
 - Any due date set/changed
-- Origin (if set)
+- Origin
 - Result: PASS/FAIL
 
 - If only proposing changes, clearly label them as “SUGGESTION (no changes made)”.
