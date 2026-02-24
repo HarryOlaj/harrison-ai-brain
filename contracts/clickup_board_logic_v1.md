@@ -70,6 +70,17 @@ Weekly archive:
 - If source is uncertain, use `unknown` (example: `Harry/unknown`) rather than leaving blank.
 - Do not overwrite an existing Origin unless Harrison explicitly requests correction.
 
+## Task Type inference (mandatory tagging)
+- Always set **Task Type** on new tasks; do not leave it blank.
+- Default inference rules:
+  - Personal errands/life/admin/family/health/home tasks → `Personal`
+  - Company/operations/default business tasks with no clearer domain → `UP360`
+  - Property/deals/listings/tenants/realtor/mortgage/rent-related tasks → `Real Estate`
+  - Wayhome product/AI/engineering tasks → `Wayhome Ai`
+  - Earth Island Homes construction/build/site/home-build tasks → `Earth Island Homes`
+- If uncertain between two business domains, default to `UP360`.
+- Do not overwrite an existing Task Type unless Harrison explicitly asks.
+
 ## Safety and approvals
 - Never delete tasks.
 - Never create new spaces, folders, lists, or rename statuses without explicit user instruction.
@@ -81,6 +92,7 @@ After any ClickUp action performed, output a compact confirmation including:
 - Task name
 - Lane (ICE BOX/BACKLOG/THIS WEEK/TODAY/DONE/ARCHIVED/TRASHED)
 - Execution Status (if set)
+- Task Type
 - Any due date set/changed
 - Origin
 - Result: PASS/FAIL
