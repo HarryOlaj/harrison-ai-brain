@@ -19,6 +19,7 @@ Canonical long-term memory for Harry + Harrison.
 ## Decisions
 - 2026-02-20: Establish local-first memory system using `MEMORY.md` + `memory/*.md` as source of truth.
 - 2026-02-25: Jimmy↔Harry Windows link standardized on secure localhost tunnel topology (`127.0.0.1:18790 -> Harry gateway 127.0.0.1:18789`) with watchdog + task-based recovery; direct LAN `ws://` node host mode is disallowed by OpenClaw security.
+- 2026-02-25: Created ClickUp list `Ai Upgrades Backlog` in `Central Command` space with lightweight tag convention (`p0-p3`, `impact-high/medium/low`) and seeded starter tasks for ops/security stability.
 - 2026-02-20: Discord remains active for chat, but critical context is mirrored into local memory files.
 - 2026-02-23: Preferred multi-agent workflow is iterative: Agent A proposes initial design → Agent B suggests improvements → Agent A assesses and finalizes recommendations → Agent B implements/tests.
 - 2026-02-23: User wants visible agent back-and-forth in Discord and a workflow extensible with future specialist agents (e.g., UX, security).
