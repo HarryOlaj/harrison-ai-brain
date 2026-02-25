@@ -31,6 +31,7 @@ Canonical long-term memory for Harry + Harrison.
 - 2026-02-23: Operational routing decision: use Harry (OpenAI-codex auth path) as primary runtime now; keep Jimmy for Discord presence/logging and bounded delegated work.
 - 2026-02-24: Default behavior update: never ask Harrison to perform an action the agent can do directly; ask for approval instead when required.
 - 2026-02-24: Secrets manager preference clarified: use 1Password as the standard for auth tokens/password workflows.
+- 2026-02-25: Strict policy update from user: never request or handle tokens/passwords via chat or ad-hoc input; use 1Password-only retrieval/injection flows.
 
 ## Current Risks
 - 2026-02-20: Semantic memory search is degraded when embeddings quota is exhausted.
