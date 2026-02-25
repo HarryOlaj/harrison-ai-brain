@@ -2,6 +2,9 @@
 
 This package makes the Jimmy link persistent and self-healing on macOS.
 
+For Jimmy's Windows runtime specifics (scheduled tasks, SSH/tunnel behavior, and recovery signatures), see:
+- `infra/jimmy-link/WINDOWS_JIMMY_RUNBOOK.md`
+
 ## Components
 - `com.harry.jimmy-tunnel`: SSH tunnel service (always-on).
 - `com.harry.jimmy-nodehost`: Jimmy node host service (always-on).
