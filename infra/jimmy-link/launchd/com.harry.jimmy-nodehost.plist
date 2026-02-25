@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.harry.jimmy-nodehost</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/aiharry/.openclaw/workspace/scripts/jimmy-link/start_node_host.sh</string>
+    <string>/Users/aiharry/.openclaw/workspace/config/jimmy-link.env</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/Users/aiharry/.jimmy-link/logs/nodehost.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/aiharry/.jimmy-link/logs/nodehost.err.log</string>
+</dict>
+</plist>
