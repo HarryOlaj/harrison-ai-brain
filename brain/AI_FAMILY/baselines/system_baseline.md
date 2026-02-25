@@ -1,26 +1,15 @@
 # System Baseline Snapshot
 
 - Runtime repo commit hash (up360-ai-workroom): f2d7963
-- Brain repo commit hash (harrison-ai-brain): aadde6c
+- Brain repo commit hash (harrison-ai-brain): 665e188
 - OpenClaw version: 2026.2.21-2
 - Current model: openai-codex/gpt-5.3-codex
 
 ## Discord allowlisted channel IDs + policy
 ```json
 {
-  "groupPolicy": "allowlist",
-  "guilds": [
-    {
-      "guild_id": "1474063511176085535",
-      "channels": [
-        "1474063701530251284",
-        "1474950396593049683",
-        "1474950478201884743",
-        "1474950611635015750"
-      ],
-      "requireMention": false
-    }
-  ]
+  "groupPolicy": "open",
+  "guilds": []
 }
 ```
 
@@ -61,16 +50,6 @@
     "id": "f1aeacf3-087e-4b82-b6ae-72a3997e1f39",
     "name": "nightly-baseline-snapshot",
     "purpose": "Run this command exactly: ~/ai_ops/harrison-ai-brain/orchestrator/nightly_baseline_snapshot.sh Then reply in this DM with only: - baseline commit hash - 'Baseli"
-  },
-  {
-    "id": "95008cef-59f0-4c98-ad68-034e2433fba1",
-    "name": "reminder:tcc-permissions-checklist",
-    "purpose": "Reminder: Run the macOS permissions checklist (Files & Folders + Full Disk Access) for OpenClaw/Terminal."
-  },
-  {
-    "id": "1192a293-979c-4fd7-919a-131671bccb94",
-    "name": "reminder:scan-revisit-0830",
-    "purpose": "Reminder: revisit setup scan items (security posture decision, session hygiene, repo hygiene, and daily alignment check)."
   }
 ]
 ```
