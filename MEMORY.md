@@ -33,6 +33,8 @@ Canonical long-term memory for Harry + Harrison.
 - 2026-02-24: Secrets manager preference clarified: use 1Password as the standard for auth tokens/password workflows.
 - 2026-02-25: Strict policy update from user: never request or handle tokens/passwords via chat or ad-hoc input; use 1Password-only retrieval/injection flows.
 - 2026-02-25: Skill posture set: active now = {1password, discord, gh-issues, github, gog, healthcheck, video-frames}; experimental/on-deck = {openai-whisper, session-logs, skill-creator, voice-call}; parked = {gemini, weather}.
+- 2026-02-25: Pam agent scoping decision: start on Discord only; first task-management scope = `Harry Industries` (AI board remains Harry+Jimmy); primary calendar anchor = `Harrison@up360.co` with additional calendars to be connected.
+- 2026-02-25: Pam UX preference: natural-language and shorthand-first interactions (e.g., "get bananas", "call with Bob at 2 tomorrow") without rigid command syntax.
 
 ## Current Risks
 - 2026-02-20: Semantic memory search is degraded when embeddings quota is exhausted.
