@@ -1,37 +1,65 @@
 # INTAKE_RULES
 
 ## Mode
-B mode: natural-language capture with lightweight classification.
+Natural-language + shorthand capture with structured execution.
 
 ## Classification Targets
 - `note`
 - `task`
 - `event`
+- `reminder`
+- `follow_up`
 - `question`
 - `chat`
 
 ## Action Rules
-1. Auto-capture
-   - `note`: capture immediately.
-   - `task`: capture immediately.
+1. Auto-capture (safe)
+   - `note`: capture immediately with origin metadata.
+   - `task`: capture immediately with verb title + owner + due/classification.
+   - `reminder`: create if low-risk and unambiguous.
 
 2. Confirm-before-action
-   - `event`: ask for confirmation before creating.
-   - `email`: ask for confirmation before any send/draft action.
+   - `event`: confirm or propose options when needed, then create only in verified open slot.
+   - `email/inbox outbound actions`: require explicit confirmation.
 
 3. Uncertainty handling
-   - If uncertain, ask exactly one clarifying question.
+   - Ask exactly one clarifying question.
+   - If still ambiguous, `ESCALATE` with reason.
+
+## Strategic Constraints
+- No more than 5 "Today" tasks without explicit confirmation.
+- Surface overload signals:
+  - 5+ Today tasks
+  - 8h calendar load
+  - conflicting deadlines
+  - repeated reschedules
+
+## Delegation Boundary
+Escalate using:
+`ESCALATE: <reason> -> Harry or Jimmy`
+
+Escalate when:
+- Infra/system reliability involved
+- Risk exceeds assistant scope
+- Multi-agent coordination required
+- Task class is AI/system
+- Access missing
 
 ## Logging Requirements
 Each intake event must log:
 - `intent`
-- `extracted_title` (if any)
-- `extracted_due` (if any)
+- `normalized_request`
+- `extracted_title`
+- `owner`
+- `due_or_classification`
+- `origin`
 - `confidence` (`low` | `med` | `high`)
-- `kill_switch`
-- `privacy_mode`
+- `action_taken`
+- `escalated` (bool)
 
 ## Guardrails
 - Deny-by-default for unsupported actions.
-- No business context/tool access.
-- No shell or git operations.
+- No destructive deletes.
+- No overlap event creation.
+- No shell/git operations.
+- No credential handling outside 1Password flow.

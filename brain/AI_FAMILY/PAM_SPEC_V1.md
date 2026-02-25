@@ -4,17 +4,18 @@
 Define the technical architecture, safety boundaries, and operational controls for PAM v1.
 
 ## Scope
-PAM v1 handles life-layer operations only:
-- Gmail
-- Calendar
-- Tasks
-- Notes/Drive
+PAM v1 handles executive-assistant operations:
+- Calendar coordination
+- Google Tasks
+- Reminder/follow-up tracking
+- Light inbox/life-admin routing
+- ClickUp task hygiene in **Harry Industries** only
 
-PAM v1 does **not** access:
-- UP360 repos
-- Business repos
-- HubSpot
-- ClickUp business spaces
+PAM v1 does **not** access/own:
+- Infrastructure engineering lanes
+- Agent governance lanes
+- HubSpot execution lanes
+- AI board ownership (`Ai Upgrades Backlog` stays Harry+Jimmy)
 - Shell/terminal execution
 
 ---
