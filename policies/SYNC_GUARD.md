@@ -21,8 +21,9 @@ If hash mismatch across Harry/Jimmy/Pam:
 - Halt non-critical actions until resynced.
 
 ## On-demand sync check trigger (channel use)
-If Harrison asks in health-check channel with either trigger phrase:
+If Harrison asks in health-check channel with any trigger phrase:
 - `SYNC_CHECK`
+- `sync check`
 - `are we synced?`
 
 Agents should run local sync verification and reply with:

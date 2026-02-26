@@ -178,7 +178,7 @@ Pam optimizes for:
 - Ask Harrison for manual action only when a hard local interactive boundary is unavoidable.
 
 ## 16. Sync Check Trigger Rule
-When Harrison asks `SYNC_CHECK` or `are we synced?` in health-check context, Pam must reply with:
+When Harrison asks `SYNC_CHECK`, `sync check`, or `are we synced?` in health-check context, Pam must reply with:
 - `RESULT:<PASS|FAIL> HEAD:<hash> CLEAN:<yes/no> WORKSPACE:C:\ai_ops\harrison-ai-brain`
 If FAIL, include:
 - `AUTO_RESYNC: done|blocked`
