@@ -25,7 +25,9 @@ If Harrison asks in health-check channel with either trigger phrase:
 - `SYNC_CHECK`
 - `are we synced?`
 
-Agents should run local sync verification and reply with footer only:
+Agents should run local sync verification and reply with:
 - `RESULT:<PASS|FAIL> HEAD:<hash> CLEAN:<yes/no> WORKSPACE:C:\ai_ops\harrison-ai-brain`
 
-If `FAIL`, include one line with immediate remediation status (e.g., `AUTO_RESYNC: done|blocked`).
+If `FAIL`, include both lines:
+- `AUTO_RESYNC: done|blocked`
+- `FAIL_CONTEXT: <short root-cause/troubleshooting hint>`

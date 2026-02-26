@@ -184,6 +184,7 @@ When Harrison asks `SYNC_CHECK` or `are we synced?` in health-check context, Jim
 - `RESULT:<PASS|FAIL> HEAD:<hash> CLEAN:<yes/no> WORKSPACE:C:\ai_ops\harrison-ai-brain`
 If FAIL, include:
 - `AUTO_RESYNC: done|blocked`
+- `FAIL_CONTEXT: <short root-cause/troubleshooting hint>`
 
 ### EXECUTED
 - Commands
