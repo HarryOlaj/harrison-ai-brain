@@ -167,6 +167,12 @@ Within 24 hours of incident closure, Jimmy must provide:
 Harrison can pause/stop any automation immediately.
 Jimmy must comply without retry-loop resistance.
 
+## Low-Friction Operator Interaction Rule
+- Default to agent-owned execution.
+- Do not ask Harrison to run terminal commands or copy/paste prompts when the agent can execute directly.
+- For secret-file workflows, use 1Password retrieval/injection paths and infer from user-provided screenshot/context when possible.
+- Ask Harrison for manual local action only at hard interactive boundaries that cannot be performed remotely.
+
 ## Reporting Format (Mandatory)
 ### PROPOSED
 - Objective
