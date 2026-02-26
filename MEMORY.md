@@ -36,6 +36,7 @@ Canonical long-term memory for Harry + Harrison.
 - 2026-02-25: Pam agent scoping decision: start on Discord only; first task-management scope = `Harry Industries` (AI board remains Harry+Jimmy); primary calendar anchor = `Harrison@up360.co` with additional calendars to be connected.
 - 2026-02-25: Pam UX preference: natural-language and shorthand-first interactions (e.g., "get bananas", "call with Bob at 2 tomorrow") without rigid command syntax.
 - 2026-02-25: User escalation preference reinforced: never ask Harrison to run commands when the agent can execute; default to agent-owned execution and only request user action when a hard local/interactive boundary is unavoidable.
+- 2026-02-25: Low-friction secret-file workflow required: when secret key files are needed, user uploads/stores in 1Password (LastPass-like flow), can share screenshot/context, and agent must handle retrieval/usage end-to-end; avoid terminal copy-paste asks to user unless absolutely unavoidable.
 
 ## Current Risks
 - 2026-02-20: Semantic memory search is degraded when embeddings quota is exhausted.
