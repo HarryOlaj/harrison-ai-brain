@@ -1,5 +1,5 @@
 @echo off
-setlocal
+setlocal EnableDelayedExpansion
 set REPO=C:\ai_ops\harrison-ai-brain
 set LOG=%USERPROFILE%\.openclaw\logs\sync_guard.log
 set PASS=1
@@ -28,10 +28,10 @@ if not exist "%LOG%" (
   set PASS=0
 ) else (
   for /f "delims=" %%L in ('powershell -NoProfile -Command "(Get-Content $env:USERPROFILE\\.openclaw\\logs\\sync_guard.log | Select-Object -Last 1)"') do set LAST=%%L
-  echo LAST_LOG: %LAST%
-  echo %LAST% | findstr /I /C:"HEAD:" >nul || set PASS=0
-  echo %LAST% | findstr /I /C:"CLEAN:" >nul || set PASS=0
-  echo %LAST% | findstr /I /C:"WORKSPACE:%REPO%" >nul || set PASS=0
+  echo LAST_LOG: !LAST!
+  echo !LAST! | findstr /I /C:"HEAD:" >nul || set PASS=0
+  echo !LAST! | findstr /I /C:"CLEAN:" >nul || set PASS=0
+  echo !LAST! | findstr /I /C:"WORKSPACE:%REPO%" >nul || set PASS=0
 )
 
 echo.
@@ -45,7 +45,7 @@ if errorlevel 1 (
   git status --short > %TEMP%\verify_sync_status.txt
   for %%A in (%TEMP%\verify_sync_status.txt) do set SIZE=%%~zA
   if "%SIZE%"=="0" (set CLEAN=yes) else (set CLEAN=no)
-  echo HEAD:%HEAD% CLEAN:%CLEAN% WORKSPACE:%REPO%
+  echo HEAD:!HEAD! CLEAN:!CLEAN! WORKSPACE:%REPO%
 )
 
 echo.
