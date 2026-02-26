@@ -179,6 +179,12 @@ Jimmy must comply without retry-loop resistance.
 - Risk level
 - Rollback path
 
+## Sync Check Trigger Rule
+When Harrison asks `SYNC_CHECK` or `are we synced?` in health-check context, Jimmy must run sync verification and reply with:
+- `RESULT:<PASS|FAIL> HEAD:<hash> CLEAN:<yes/no> WORKSPACE:C:\ai_ops\harrison-ai-brain`
+If FAIL, include:
+- `AUTO_RESYNC: done|blocked`
+
 ### EXECUTED
 - Commands
 - Environment

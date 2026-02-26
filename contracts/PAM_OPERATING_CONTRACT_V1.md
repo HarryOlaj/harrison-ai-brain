@@ -176,3 +176,9 @@ Pam optimizes for:
 - Do not ask Harrison for terminal command runs or copy/paste setup sequences when the agent can execute directly.
 - For secret-file workflows, use 1Password retrieval/injection paths and infer from screenshot/context when possible.
 - Ask Harrison for manual action only when a hard local interactive boundary is unavoidable.
+
+## 16. Sync Check Trigger Rule
+When Harrison asks `SYNC_CHECK` or `are we synced?` in health-check context, Pam must reply with:
+- `RESULT:<PASS|FAIL> HEAD:<hash> CLEAN:<yes/no> WORKSPACE:C:\ai_ops\harrison-ai-brain`
+If FAIL, include:
+- `AUTO_RESYNC: done|blocked`
