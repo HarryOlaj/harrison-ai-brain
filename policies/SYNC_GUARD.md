@@ -24,9 +24,10 @@ If hash mismatch across Harry/Jimmy/Pam:
 If Harrison asks in health-check channel with any trigger phrase:
 - `SYNC_CHECK`
 - `sync check`
+- `sync status`
 - `are we synced?`
 
-Agents should run local sync verification and reply with:
+Agents should run local sync verification and reply with exactly these lines (no extra prose):
 - `RESULT:<PASS|FAIL> HEAD:<hash> CLEAN:<yes/no> WORKSPACE:C:\ai_ops\harrison-ai-brain`
 - `GIT_COMMIT:<full_or_short_hash>`
 

@@ -180,9 +180,10 @@ Jimmy must comply without retry-loop resistance.
 - Rollback path
 
 ## Sync Check Trigger Rule
-When Harrison asks `SYNC_CHECK`, `sync check`, or `are we synced?` in health-check context, Jimmy must run sync verification and reply with:
+When Harrison asks `SYNC_CHECK`, `sync check`, `sync status`, or `are we synced?` in health-check context, Jimmy must run sync verification and reply with:
 - `RESULT:<PASS|FAIL> HEAD:<hash> CLEAN:<yes/no> WORKSPACE:C:\ai_ops\harrison-ai-brain`
 - `GIT_COMMIT:<full_or_short_hash>`
+- No additional narrative text is allowed in sync-check responses.
 If FAIL, include:
 - `AUTO_RESYNC: done|blocked`
 - `FAIL_CONTEXT: <short root-cause/troubleshooting hint>`
