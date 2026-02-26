@@ -37,6 +37,9 @@ Canonical long-term memory for Harry + Harrison.
 - 2026-02-25: Pam UX preference: natural-language and shorthand-first interactions (e.g., "get bananas", "call with Bob at 2 tomorrow") without rigid command syntax.
 - 2026-02-25: User escalation preference reinforced: never ask Harrison to run commands when the agent can execute; default to agent-owned execution and only request user action when a hard local/interactive boundary is unavoidable.
 - 2026-02-25: Low-friction secret-file workflow required: when secret key files are needed, user uploads/stores in 1Password (LastPass-like flow), can share screenshot/context, and agent must handle retrieval/usage end-to-end; avoid terminal copy-paste asks to user unless absolutely unavoidable.
+- 2026-02-26: Pam is now running as a separate OpenClaw profile/runtime on Jimmy host (`--profile pam`, gateway `18889`) with Discord account `Pam V1`, while Jimmy remains separate runtime/identity.
+- 2026-02-26: Pam calendar/task integration was re-enabled by provisioning Google OAuth desktop client JSON from user-provided local file path and authorizing gog scopes for `Harrison@up360.co`.
+- 2026-02-26: Reliability lesson confirmed: Jimmy reconnect failures were primarily transport/auth drift (Mac LAN IP change + occasional device token mismatch), not contract-doc cleanup; tunnel path now standardized on hostname target (`Ais-MacBook-Pro.local`) with watchdog recovery.
 
 ## Current Risks
 - 2026-02-20: Semantic memory search is degraded when embeddings quota is exhausted.
