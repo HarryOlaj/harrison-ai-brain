@@ -14,4 +14,4 @@ Scope: All Harry + Jimmy operational responses
 - If runtime time is unavailable, explicitly state uncertainty before proceeding.
 
 ## Timezone Authority
-- Contract timezone default: America/Toronto (unless explicitly overridden by Harrison).
+- Contract timezone default: America/Halifax (unless explicitly overridden by Harrison).
