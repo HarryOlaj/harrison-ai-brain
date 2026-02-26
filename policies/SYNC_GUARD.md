@@ -28,6 +28,7 @@ If Harrison asks in health-check channel with any trigger phrase:
 
 Agents should run local sync verification and reply with:
 - `RESULT:<PASS|FAIL> HEAD:<hash> CLEAN:<yes/no> WORKSPACE:C:\ai_ops\harrison-ai-brain`
+- `GIT_COMMIT:<full_or_short_hash>`
 
 If `FAIL`, include both lines:
 - `AUTO_RESYNC: done|blocked`
