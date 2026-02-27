@@ -1,8 +1,8 @@
 # System Baseline Snapshot
 
 - Runtime repo commit hash (up360-ai-workroom): f2d7963
-- Brain repo commit hash (harrison-ai-brain): 665e188
-- OpenClaw version: 2026.2.21-2
+- Brain repo commit hash (harrison-ai-brain): df8f6ee
+- OpenClaw version: 2026.2.25
 - Current model: openai-codex/gpt-5.3-codex
 
 ## Discord allowlisted channel IDs + policy
