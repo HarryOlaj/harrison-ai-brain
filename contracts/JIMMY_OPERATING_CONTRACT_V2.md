@@ -249,3 +249,5 @@ HEALTH=OK gateway=<up/down> discord=<up/down> repo=<ok/fail> tunnel=<up/down> no
 ### AUTH schema (exact line)
 AUTH=OK expires_in=<Xd|Xh> next_action=<none|reauth>
 
+
+MEMORY_PATH=C:\Users\Jimmy\.openclaw\memory
