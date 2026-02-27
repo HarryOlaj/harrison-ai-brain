@@ -1,3 +1,6 @@
 
 # Runtime logs
 orchestrator/logs/
+# Runtime memory/state must never live in the repo
+memory/
+MEMORY.md
